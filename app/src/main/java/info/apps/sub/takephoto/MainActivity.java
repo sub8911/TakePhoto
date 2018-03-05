@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
   Button btnTakePhoto;
   ImageView ivPreview;
+
   String mCurrentPhotoPath;
 
 
@@ -131,9 +133,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       }
       // Continue only if the File was successfully created
       if (photoFile != null) {
-        Uri photoURI = FileProvider.getUriForFile(MainActivity.this,
+        Uri photoURI;
+        if(Build.VERSION.SDK_INT >=24)
+        {photoURI = FileProvider.getUriForFile(MainActivity.this,
             BuildConfig.APPLICATION_ID + ".provider",
             createImageFile());
+        } else
+          {
+            photoURI = Uri.fromFile(createImageFile());
+          }
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
         startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
       }
