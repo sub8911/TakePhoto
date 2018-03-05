@@ -13,13 +13,22 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="14dp"
     android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
+    android:layout_toEndOf="@+id/btnHelperTakePhoto"
     android:text="Take"/>
+  <Button
+    android:id="@+id/btnHelperTakePhoto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="13dp"
+    android:layout_alignBaseline="@+id/btnTakePhoto"
+    android:layout_alignBottom="@+id/btnTakePhoto"
+    android:layout_alignParentStart="true"
+    android:text="Take using Helper"/>
   <ImageView
     android:id="@+id/ivPreview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@+id/btnTakePhoto"
+    android:layout_below="@+id/btnHelperTakePhoto"
     />
 
 </RelativeLayout>

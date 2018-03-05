@@ -25,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.channels.InterruptedByTimeoutException;
 import java.security.Permissions;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
   Button btnTakePhoto;
   ImageView ivPreview;
-
+  Button helper;
   String mCurrentPhotoPath;
 
 
@@ -50,7 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   private void initInstances() {
     btnTakePhoto = (Button) findViewById(R.id.btnTakePhoto);
     ivPreview = (ImageView) findViewById(R.id.ivPreview);
-
+    helper=(Button) findViewById(R.id.btnHelperTakePhoto);
+    helper.setOnClickListener(this);
     btnTakePhoto.setOnClickListener(this);
   }
 
@@ -69,6 +71,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           } catch (IOException e) {
             e.printStackTrace();
           }
+
+    }
+    if (view == helper) {
+      Intent intent=new Intent(this,SelectImageActivity.class);
+      startActivity(intent);
 
     }
   }
